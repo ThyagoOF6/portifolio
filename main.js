@@ -350,19 +350,6 @@ const renderProjects = (repositories) => {
     const image = document.createElement("div");
     image.className = "project-image";
     image.style.backgroundImage = `url("${fallbackImages[index % fallbackImages.length]}")`;
-    const preview = document.createElement("img");
-    preview.src = `https://opengraph.githubassets.com/1/${repository.full_name}`;
-    preview.alt = `Prévia do projeto ${repository.name}`;
-    preview.loading = index === 0 ? "eager" : "lazy";
-    preview.addEventListener("error", () => {
-      preview.remove();
-    });
-    const number = document.createElement("span");
-    number.textContent = String(index + 1).padStart(2, "0");
-    const imageTitle = document.createElement("strong");
-    imageTitle.className = "project-image-title";
-    imageTitle.textContent = repository.name;
-    image.append(preview, number, imageTitle);
 
     const info = document.createElement("div");
     info.className = "project-info";

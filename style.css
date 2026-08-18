@@ -344,42 +344,6 @@ h2 em {
 .project:hover .project-image {
   transform: scale(0.98);
 }
-.project-image img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  filter: saturate(0.75) contrast(0.95);
-}
-.project-image::after {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(32, 32, 30, 0.08),
-    rgba(32, 32, 30, 0.72)
-  );
-  content: "";
-  pointer-events: none;
-}
-.project-image-title {
-  position: absolute;
-  right: 16px;
-  bottom: 14px;
-  left: 16px;
-  z-index: 1;
-  width: fit-content;
-  max-width: calc(100% - 32px);
-  padding: 8px 10px;
-  background: rgba(32, 32, 30, 0.82);
-  overflow: hidden;
-  color: var(--paper);
-  font-size: 18px;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 .project-image span {
   position: absolute;
   left: 16px;
