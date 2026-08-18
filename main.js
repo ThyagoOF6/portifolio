@@ -2,10 +2,37 @@ const emailButton = document.querySelector(".email-button");
 const toast = document.querySelector(".toast");
 const experienceCounter = document.querySelector(".experience-counter");
 const languageButtons = document.querySelectorAll("[data-language]");
+const themeToggle = document.querySelector("[data-theme-toggle]");
 const projectList = document.querySelector("[data-github-user]");
 const certificationsList = document.querySelector("[data-certifications-list]");
 let activeLanguage = "en";
 let loadedRepositories = [];
+
+const applyTheme = (theme) => {
+  const isDark = theme === "dark";
+  document.documentElement.dataset.theme = isDark ? "dark" : "light";
+  themeToggle?.setAttribute("aria-pressed", String(isDark));
+  themeToggle?.setAttribute(
+    "aria-label",
+    isDark ? "Ativar tema claro" : "Ativar tema escuro",
+  );
+  themeToggle?.setAttribute(
+    "title",
+    isDark ? "Ativar tema claro" : "Ativar tema escuro",
+  );
+  const icon = themeToggle?.querySelector("span");
+  if (icon) icon.textContent = isDark ? "☀" : "☾";
+  window.localStorage.setItem("portfolio-theme", isDark ? "dark" : "light");
+};
+
+themeToggle?.addEventListener("click", () => {
+  const nextTheme =
+    document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  applyTheme(nextTheme);
+});
+
+const savedTheme = window.localStorage.getItem("portfolio-theme");
+applyTheme(savedTheme === "dark" ? "dark" : "light");
 
 const translations = {
   pt: {
