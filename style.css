@@ -264,9 +264,23 @@ h2 em {
   font-size: clamp(3rem, 5.5vw, 6.5rem);
 }
 .project-list {
+  max-height: 760px;
+  padding-right: 16px;
+  overflow-y: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 48px 20px;
+  scrollbar-color: var(--coral) var(--line);
+  scrollbar-width: thin;
+}
+.project-list::-webkit-scrollbar {
+  width: 8px;
+}
+.project-list::-webkit-scrollbar-track {
+  background: var(--line);
+}
+.project-list::-webkit-scrollbar-thumb {
+  background: var(--coral);
 }
 .projects-status,
 .projects-profile-link {
@@ -620,6 +634,8 @@ h2 em {
     margin-bottom: 55px;
   }
   .project-list {
+    max-height: 610px;
+    padding-right: 10px;
     gap: 35px 14px;
   }
   .project-featured {
