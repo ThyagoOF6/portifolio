@@ -322,6 +322,13 @@ h2 em {
   font: 10px var(--mono);
   text-transform: uppercase;
 }
+.project-info .project-description {
+  max-width: 360px;
+  margin-top: 10px;
+  color: var(--muted);
+  font: 12px/1.5 var(--sans);
+  text-transform: none;
+}
 .arrow {
   font-size: 20px;
   transition: transform 0.2s ease;
@@ -488,6 +495,9 @@ h2 em {
   margin: 20px 0 0;
   color: #93928c;
   font: 11px var(--mono);
+}
+.contact-phone {
+  margin-top: 12px !important;
 }
 .contact-action a {
   color: var(--paper);

@@ -2,6 +2,7 @@ const emailButton = document.querySelector(".email-button");
 const toast = document.querySelector(".toast");
 const experienceCounter = document.querySelector(".experience-counter");
 const languageButtons = document.querySelectorAll("[data-language]");
+let activeLanguage = "en";
 
 const translations = {
   pt: {
@@ -15,7 +16,8 @@ const translations = {
     navEducation: "Formação",
     navAbout: "Sobre",
     navContact: "Contato",
-    availability: "disponível para oportunidades",
+    availability:
+      "disponível para início imediato · presencial, híbrido ou remoto",
     heroEyebrow: "PORTFÓLIO / 2026",
     heroTitle: "Software que gera <em>impacto.</em>",
     heroIntro:
@@ -33,10 +35,16 @@ const translations = {
     projectsTitle: "Projetos que<br /><em>contam algo.</em>",
     projectOneTitle: "API REST — Sistema Financeiro",
     projectOneType: "Java · Spring Boot · JPA · PostgreSQL",
+    projectOneDescription:
+      "API com autenticação JWT, contas, lançamentos, relatórios e cobertura de testes acima de 80%.",
     projectTwoTitle: "Dashboard de Gestão",
     projectTwoType: "React · TypeScript · Chart.js · REST API",
+    projectTwoDescription:
+      "Dashboard responsivo com gráficos interativos, filtros dinâmicos, integração REST e deploy via GitHub Actions.",
     projectThreeTitle: "Automação de processos",
     projectThreeType: "Python · scripts internos · eficiência operacional",
+    projectThreeDescription:
+      "Scripts Python para reduzir tarefas manuais e liberar cerca de 6 horas semanais da equipe.",
     aboutEyebrow: "03 — sobre mim",
     aboutTitle: "Menos ruído.<br /><em>Mais sentido.</em>",
     aboutLead: "Engenharia de software com visão de negócio.",
@@ -89,6 +97,10 @@ const translations = {
     javaTitle: "Java e POO Expert",
     sqlDate: "jan 2024",
     sqlTitle: "Banco de Dados e SQL Expert",
+    gitDate: "jul 2024",
+    gitTitle: "Git e GitHub Expert",
+    algorithmsDate: "jan 2025",
+    algorithmsTitle: "Estruturas de Dados e Algoritmos Expert",
     devSuperiorIssuer: "DevSuperior",
     languagesLabel: "idiomas",
     portugueseLevel: "nativo",
@@ -96,6 +108,7 @@ const translations = {
     portugueseDescription: "Idioma materno",
     englishTitle: "Inglês",
     englishDescription: "Intermediário-avançado · EF English Live",
+    phoneLabel: "telefone",
     contactEyebrow: "06 — contato",
     contactTitle: "Tem uma ideia?<br /><em>Vamos tirar do papel.</em>",
     copyLabel: "copiar",
@@ -115,7 +128,7 @@ const translations = {
     navEducation: "Education",
     navAbout: "About",
     navContact: "Contact",
-    availability: "available for opportunities",
+    availability: "available immediately · on-site, hybrid, or remote",
     heroEyebrow: "PORTFOLIO / 2026",
     heroTitle: "Software that makes an <em>impact.</em>",
     heroIntro:
@@ -133,10 +146,16 @@ const translations = {
     projectsTitle: "Projects that<br /><em>tell a story.</em>",
     projectOneTitle: "REST API — Finance System",
     projectOneType: "Java · Spring Boot · JPA · PostgreSQL",
+    projectOneDescription:
+      "API with JWT authentication, accounts, transactions, reports, and over 80% test coverage.",
     projectTwoTitle: "Management Dashboard",
     projectTwoType: "React · TypeScript · Chart.js · REST API",
+    projectTwoDescription:
+      "Responsive dashboard with interactive charts, dynamic filters, REST integration, and GitHub Actions deployment.",
     projectThreeTitle: "Process Automation",
     projectThreeType: "Python · internal scripts · operational efficiency",
+    projectThreeDescription:
+      "Python scripts that reduce manual tasks and save the team approximately 6 hours per week.",
     aboutEyebrow: "03 — about me",
     aboutTitle: "Less noise.<br /><em>More meaning.</em>",
     aboutLead: "Software engineering with business insight.",
@@ -189,6 +208,10 @@ const translations = {
     javaTitle: "Java and OOP Expert",
     sqlDate: "Jan 2024",
     sqlTitle: "Database and SQL Expert",
+    gitDate: "Jul 2024",
+    gitTitle: "Git and GitHub Expert",
+    algorithmsDate: "Jan 2025",
+    algorithmsTitle: "Data Structures and Algorithms Expert",
     devSuperiorIssuer: "DevSuperior",
     languagesLabel: "languages",
     portugueseLevel: "native",
@@ -196,6 +219,7 @@ const translations = {
     portugueseDescription: "Native language",
     englishTitle: "English",
     englishDescription: "Upper-intermediate · EF English Live",
+    phoneLabel: "phone",
     contactEyebrow: "06 — contact",
     contactTitle: "Have an idea?<br /><em>Let's bring it to life.</em>",
     copyLabel: "copy",
@@ -210,6 +234,7 @@ const setLanguage = (language) => {
   const selectedTranslations = translations[language];
   if (!selectedTranslations) return;
 
+  activeLanguage = language;
   document.documentElement.lang = language === "en" ? "en" : "pt-BR";
   document.title = selectedTranslations.pageTitle;
   document
@@ -253,8 +278,9 @@ const updateExperienceCounter = () => {
   const seconds = elapsedSeconds % 60;
   const formatUnit = (unit) => String(unit).padStart(2, "0");
 
+  const durationLabel = activeLanguage === "en" ? "days" : "dias";
   experienceCounter.querySelector("strong").textContent =
-    `${days} dias, ${formatUnit(hours)}h ${formatUnit(minutes)}min ${formatUnit(seconds)}s`;
+    `${days} ${durationLabel}, ${formatUnit(hours)}h ${formatUnit(minutes)}min ${formatUnit(seconds)}s`;
 };
 
 updateExperienceCounter();
