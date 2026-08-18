@@ -307,6 +307,12 @@ const renderProjectsMessage = (messageKey) => {
 const renderProjects = (repositories) => {
   projectList.replaceChildren();
 
+  const fallbackImages = [
+    "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1553484771-047a44eee27b?auto=format&fit=crop&w=1200&q=85",
+  ];
+
   repositories.forEach((repository, index) => {
     const project = document.createElement("a");
     project.className = `project${index === 0 ? " project-featured" : ""} reveal`;
@@ -316,10 +322,15 @@ const renderProjects = (repositories) => {
 
     const image = document.createElement("div");
     image.className = "project-image";
-    image.style.backgroundImage = `url("https://opengraph.githubassets.com/1/${repository.full_name}")`;
+    image.style.backgroundImage = `url("${fallbackImages[index % fallbackImages.length]}")`;
+    const preview = document.createElement("img");
+    preview.src = `https://opengraph.githubassets.com/1/${repository.full_name}`;
+    preview.alt = `Prévia do projeto ${repository.name}`;
+    preview.loading = index === 0 ? "eager" : "lazy";
+    preview.addEventListener("error", () => preview.remove());
     const number = document.createElement("span");
     number.textContent = String(index + 1).padStart(2, "0");
-    image.append(number);
+    image.append(preview, number);
 
     const info = document.createElement("div");
     info.className = "project-info";

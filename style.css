@@ -307,6 +307,8 @@ h2 em {
   height: 215px;
   position: relative;
   overflow: hidden;
+  background-position: center;
+  background-size: cover;
   transition: transform 0.3s ease;
 }
 .project-featured .project-image {
@@ -314,6 +316,14 @@ h2 em {
 }
 .project:hover .project-image {
   transform: scale(0.98);
+}
+.project-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  filter: saturate(0.75) contrast(0.95);
+  mix-blend-mode: multiply;
 }
 .project-image span {
   position: absolute;
