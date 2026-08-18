@@ -45,6 +45,9 @@ a {
   font-size: 14px;
   letter-spacing: -0.02em;
 }
+.brand strong {
+  white-space: nowrap;
+}
 .brand span {
   display: grid;
   place-items: center;
@@ -561,7 +564,7 @@ h2 em {
     display: none;
   }
   .availability {
-    font-size: 9px;
+    display: none;
   }
   .language-switcher {
     margin-left: 10px;

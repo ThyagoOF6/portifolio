@@ -6,9 +6,9 @@ let activeLanguage = "en";
 
 const translations = {
   pt: {
-    pageTitle: "Thiago F. — Portfólio",
+    pageTitle: "Thyago Oliveira Ferreira — Portfólio",
     metaDescription:
-      "Portfólio de Thiago F. — projetos, experiência e formas de contato.",
+      "Portfólio de Thyago Oliveira Ferreira — projetos, experiência e formas de contato.",
     languageLabel: "Escolher idioma",
     navLabel: "Navegação principal",
     navProjects: "Projetos",
@@ -118,9 +118,9 @@ const translations = {
     emailCopied: "E-mail copiado.",
   },
   en: {
-    pageTitle: "Thiago F. — Portfolio",
+    pageTitle: "Thyago Oliveira Ferreira — Portfolio",
     metaDescription:
-      "Thiago F.'s portfolio — projects, experience, and contact details.",
+      "Thyago Oliveira Ferreira's portfolio — projects, experience, and contact details.",
     languageLabel: "Choose language",
     navLabel: "Main navigation",
     navProjects: "Projects",

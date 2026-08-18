@@ -1,4 +1,4 @@
-# Thiago F. — Portfólio
+# Thyago Oliveira Ferreira — Portfólio
 
 Portfólio pessoal para apresentar projetos, experiência e formas de contato.
 
