@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Portfólio de Thiago F. — projetos, experiência e formas de contato."
+      content="Thiago F.'s portfolio — projects, experience, and contact details."
     />
     <meta name="theme-color" content="#f3efe6" />
     <title>Thiago F. — Portfólio</title>
@@ -23,38 +23,53 @@
         <a class="brand" href="#top" aria-label="Voltar ao início"
           ><span>TF</span><strong>Thiago F.</strong></a
         >
-        <nav class="nav" aria-label="Navegação principal">
-          <a href="#projetos">Projetos</a>
-          <a href="#experiencia">Experiência</a>
-          <a href="#formacao">Formação</a>
-          <a href="#sobre">Sobre</a>
-          <a href="#contato">Contato</a>
+        <nav
+          class="nav"
+          aria-label="Navegação principal"
+          data-i18n-aria="navLabel"
+        >
+          <a href="#projetos" data-i18n="navProjects">Projetos</a>
+          <a href="#experiencia" data-i18n="navExperience">Experiência</a>
+          <a href="#formacao" data-i18n="navEducation">Formação</a>
+          <a href="#sobre" data-i18n="navAbout">Sobre</a>
+          <a href="#contato" data-i18n="navContact">Contato</a>
         </nav>
         <a class="availability" href="#contato"
-          ><i></i> disponível para oportunidades</a
+          ><i></i>
+          <span data-i18n="availability">disponível para oportunidades</span></a
         >
+        <div
+          class="language-switcher"
+          aria-label="Escolher idioma"
+          data-i18n-aria="languageLabel"
+        >
+          <button type="button" data-language="pt" class="active">PT</button>
+          <button type="button" data-language="en">EN</button>
+        </div>
       </header>
 
       <main id="top">
         <section class="hero section-grid">
           <div class="hero-copy reveal">
-            <p class="eyebrow">PORTFÓLIO / 2026</p>
-            <h1>Ideias que ganham <em>forma.</em></h1>
-            <p class="intro">
+            <p class="eyebrow" data-i18n="heroEyebrow">PORTFÓLIO / 2026</p>
+            <h1 data-i18n="heroTitle">Ideias que ganham <em>forma.</em></h1>
+            <p class="intro" data-i18n="heroIntro">
               Sou Thiago, desenvolvedor apaixonado por transformar problemas
               reais em experiências digitais claras, úteis e bem construídas.
             </p>
             <div class="hero-actions">
               <a class="button button-dark" href="#experiencia"
-                >ver trajetória <span>↘</span></a
+                ><span data-i18n="heroButton">ver trajetória</span>
+                <span>↘</span></a
               >
               <a class="text-link" href="mailto:seuemail@email.com"
-                >vamos conversar <span>↗</span></a
+                ><span data-i18n="heroContact">vamos conversar</span>
+                <span>↗</span></a
               >
             </div>
           </div>
           <div class="hero-visual reveal reveal-delay">
-            <div class="visual-label">01 — perfil</div>
+            <div class="visual-label" data-i18n="profileLabel">01 — perfil</div>
             <div class="portrait-frame">
               <img
                 src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=85"
@@ -63,32 +78,45 @@
               <div class="stamp">CRAFT<br />WITH<br />CARE</div>
             </div>
             <p class="visual-caption">
-              código com intenção<br /><span>e curiosidade pelo caminho</span>
+              <span data-i18n="visualCaption"
+                >código com intenção<br /><span
+                  >e curiosidade pelo caminho</span
+                ></span
+              >
             </p>
           </div>
         </section>
 
-        <section class="ticker" aria-label="Áreas de atuação">
+        <section
+          class="ticker"
+          aria-label="Áreas de atuação"
+          data-i18n-aria="areasLabel"
+        >
           <div class="ticker-track">
-            <span>DESENVOLVIMENTO WEB</span><b>✳</b><span>PRODUTO DIGITAL</span
-            ><b>✳</b><span>APRENDIZADO CONTÍNUO</span><b>✳</b
-            ><span>DESENVOLVIMENTO WEB</span><b>✳</b
-            ><span>PRODUTO DIGITAL</span>
+            <span data-i18n="tickerWeb">DESENVOLVIMENTO WEB</span><b>✳</b
+            ><span data-i18n="tickerProduct">PRODUTO DIGITAL</span><b>✳</b
+            ><span data-i18n="tickerLearning">APRENDIZADO CONTÍNUO</span><b>✳</b
+            ><span data-i18n="tickerWeb">DESENVOLVIMENTO WEB</span><b>✳</b
+            ><span data-i18n="tickerProduct">PRODUTO DIGITAL</span>
           </div>
         </section>
 
         <section id="projetos" class="projects section-grid">
           <div class="section-heading reveal">
-            <p class="eyebrow">02 — selecionados</p>
-            <h2>Projetos que<br /><em>contam algo.</em></h2>
+            <p class="eyebrow" data-i18n="projectsEyebrow">02 — selecionados</p>
+            <h2 data-i18n="projectsTitle">
+              Projetos que<br /><em>contam algo.</em>
+            </h2>
           </div>
           <div class="project-list">
             <a class="project project-featured reveal" href="#contato">
               <div class="project-image project-image-one"><span>01</span></div>
               <div class="project-info">
                 <div>
-                  <h3>Projeto em destaque</h3>
-                  <p>Produto digital / desenvolvimento</p>
+                  <h3 data-i18n="projectOneTitle">Projeto em destaque</h3>
+                  <p data-i18n="projectOneType">
+                    Produto digital / desenvolvimento
+                  </p>
                 </div>
                 <span class="arrow">↗</span>
               </div>
@@ -97,8 +125,8 @@
               <div class="project-image project-image-two"><span>02</span></div>
               <div class="project-info">
                 <div>
-                  <h3>Experimento web</h3>
-                  <p>Interface / protótipo</p>
+                  <h3 data-i18n="projectTwoTitle">Experimento web</h3>
+                  <p data-i18n="projectTwoType">Interface / protótipo</p>
                 </div>
                 <span class="arrow">↗</span>
               </div>
@@ -109,8 +137,8 @@
               </div>
               <div class="project-info">
                 <div>
-                  <h3>Solução sob medida</h3>
-                  <p>Automação / experiência</p>
+                  <h3 data-i18n="projectThreeTitle">Solução sob medida</h3>
+                  <p data-i18n="projectThreeType">Automação / experiência</p>
                 </div>
                 <span class="arrow">↗</span>
               </div>
@@ -120,15 +148,19 @@
 
         <section id="sobre" class="about section-grid">
           <div class="section-heading reveal">
-            <p class="eyebrow">03 — sobre mim</p>
-            <h2>Menos ruído.<br /><em>Mais sentido.</em></h2>
+            <p class="eyebrow" data-i18n="aboutEyebrow">03 — sobre mim</p>
+            <h2 data-i18n="aboutTitle">
+              Menos ruído.<br /><em>Mais sentido.</em>
+            </h2>
           </div>
           <div class="about-copy reveal">
             <p class="large-copy">
-              A tecnologia fica melhor quando torna as coisas mais simples para
-              alguém.
+              <span data-i18n="aboutLead"
+                >A tecnologia fica melhor quando torna as coisas mais simples
+                para alguém.
+              </span>
             </p>
-            <p>
+            <p data-i18n="aboutBody">
               Estou construindo minha trajetória em desenvolvimento web, unindo
               atenção aos detalhes, pensamento de produto e vontade de aprender
               fazendo. Este espaço reúne o que já criei e o que ainda estou
@@ -143,35 +175,63 @@
 
         <section id="experiencia" class="resume-section section-grid">
           <div class="section-heading reveal">
-            <p class="eyebrow">04 — experiência</p>
-            <h2>O que venho<br /><em>construindo.</em></h2>
+            <p class="eyebrow" data-i18n="experienceEyebrow">
+              04 — experiência
+            </p>
+            <h2 data-i18n="experienceTitle">
+              O que venho<br /><em>construindo.</em>
+            </h2>
           </div>
           <div class="timeline reveal">
             <article class="timeline-item">
-              <span class="timeline-date">2024 — atual</span>
+              <span class="timeline-date">jan 2026 — atual</span>
               <div>
-                <h3>Seu cargo atual</h3>
-                <p class="company">Nome da empresa · Cidade, BR</p>
-                <p>
-                  Descreva aqui suas principais responsabilidades, tecnologias
-                  utilizadas e o impacto do seu trabalho em uma ou duas frases.
+                <h3 data-i18n="kyrosTitle">
+                  Estagiário de Engenharia de Software
+                </h3>
+                <p class="company">
+                  Kyros Tecnologia I Fábrica de Software · Uberlândia, MG ·
+                  híbrido
+                </p>
+                <p
+                  class="experience-counter"
+                  data-start="2026-01-01T08:00:00-03:00"
+                  role="status"
+                  aria-live="polite"
+                >
+                  <span data-i18n="counterLabel">tempo na Kyros:</span>
+                  <strong>calculando...</strong>
+                </p>
+                <p data-i18n="kyrosDescription">
+                  Atuação em projetos de alta complexidade, com desenvolvimento
+                  full-stack e otimização de sistemas usando Java, JavaScript e
+                  React. Desenvolvimento de queries e procedures em SQL e
+                  PL/SQL, suporte ao sistema de faturamento Kenan e automação de
+                  processos internos com Python, com aprendizado contínuo em
+                  práticas de engenharia de software e Microsoft Azure.
                 </p>
                 <div class="tag-row">
-                  <span>tecnologia</span><span>responsabilidade</span>
+                  <span>Java</span><span>React</span><span>SQL / PL/SQL</span
+                  ><span>Python</span><span>Azure</span>
                 </div>
               </div>
             </article>
             <article class="timeline-item">
               <span class="timeline-date">2022 — 2024</span>
               <div>
-                <h3>Experiência anterior</h3>
-                <p class="company">Nome da empresa · Cidade, BR</p>
-                <p>
+                <h3 data-i18n="previousExperienceTitle">
+                  Experiência anterior
+                </h3>
+                <p class="company" data-i18n="previousCompany">
+                  Nome da empresa · Cidade, BR
+                </p>
+                <p data-i18n="previousExperienceDescription">
                   Conte brevemente o que você fez, quais problemas resolveu e
                   como colaborou com o time ou com os resultados do negócio.
                 </p>
                 <div class="tag-row">
-                  <span>projeto</span><span>colaboração</span>
+                  <span data-i18n="previousTagOne">projeto</span
+                  ><span data-i18n="previousTagTwo">colaboração</span>
                 </div>
               </div>
             </article>
@@ -180,39 +240,59 @@
 
         <section id="formacao" class="credentials section-grid">
           <div class="section-heading reveal">
-            <p class="eyebrow">05 — formação</p>
-            <h2>Aprender é<br /><em>parte do trabalho.</em></h2>
+            <p class="eyebrow" data-i18n="educationEyebrow">05 — formação</p>
+            <h2 data-i18n="educationTitle">
+              Aprender é<br /><em>parte do trabalho.</em>
+            </h2>
           </div>
           <div class="credentials-list reveal">
             <div class="credential-block">
-              <p class="credential-label">formação acadêmica</p>
+              <p class="credential-label" data-i18n="academicLabel">
+                formação acadêmica
+              </p>
               <article class="credential-item">
                 <span>2023 — atual</span>
                 <div>
-                  <h3>Nome do curso</h3>
-                  <p>Instituição de ensino · Graduação / técnico</p>
+                  <h3 data-i18n="courseName">Nome do curso</h3>
+                  <p data-i18n="courseInstitution">
+                    Instituição de ensino · Graduação / técnico
+                  </p>
                 </div>
               </article>
             </div>
             <div class="credential-block">
-              <p class="credential-label">cursos & certificados</p>
+              <p class="credential-label" data-i18n="certificatesLabel">
+                cursos & certificados
+              </p>
               <article class="credential-item">
                 <span>2025</span>
                 <div>
-                  <h3>Nome do curso ou certificado</h3>
+                  <h3 data-i18n="certificateOne">
+                    Nome do curso ou certificado
+                  </h3>
                   <p>
-                    Plataforma / instituição ·
-                    <a href="#contato">ver certificado ↗</a>
+                    <span data-i18n="platformInstitution"
+                      >Plataforma / instituição</span
+                    >
+                    ·
+                    <a href="#contato" data-i18n="viewCertificate"
+                      >ver certificado ↗</a
+                    >
                   </p>
                 </div>
               </article>
               <article class="credential-item">
                 <span>2024</span>
                 <div>
-                  <h3>Outro curso relevante</h3>
+                  <h3 data-i18n="certificateTwo">Outro curso relevante</h3>
                   <p>
-                    Plataforma / instituição ·
-                    <a href="#contato">ver certificado ↗</a>
+                    <span data-i18n="platformInstitution"
+                      >Plataforma / instituição</span
+                    >
+                    ·
+                    <a href="#contato" data-i18n="viewCertificate"
+                      >ver certificado ↗</a
+                    >
                   </p>
                 </div>
               </article>
@@ -222,15 +302,17 @@
 
         <section id="contato" class="contact reveal">
           <div>
-            <p class="eyebrow">06 — contato</p>
-            <h2>Tem uma ideia?<br /><em>Vamos tirar do papel.</em></h2>
+            <p class="eyebrow" data-i18n="contactEyebrow">06 — contato</p>
+            <h2 data-i18n="contactTitle">
+              Tem uma ideia?<br /><em>Vamos tirar do papel.</em>
+            </h2>
           </div>
           <div class="contact-action">
             <button class="email-button" data-email="seuemail@email.com">
-              seuemail@email.com <span>copiar</span>
+              seuemail@email.com <span data-i18n="copyLabel">copiar</span>
             </button>
             <p>
-              ou me encontre no
+              <span data-i18n="findMe">ou me encontre no</span>
               <a href="https://github.com/" target="_blank" rel="noreferrer"
                 >GitHub ↗</a
               >
@@ -239,11 +321,14 @@
         </section>
       </main>
       <footer class="footer">
-        <span>© 2026 Thiago F.</span><span>feito com curiosidade e café</span
-        ><a href="#top">voltar ao topo ↑</a>
+        <span>© 2026 Thiago F.</span
+        ><span data-i18n="footerMade">feito com curiosidade e café</span
+        ><a href="#top" data-i18n="backToTop">voltar ao topo ↑</a>
       </footer>
     </div>
-    <div class="toast" role="status" aria-live="polite">E-mail copiado.</div>
+    <div class="toast" role="status" aria-live="polite" data-i18n="emailCopied">
+      E-mail copiado.
+    </div>
     <script type="module" src="./main.js"></script>
   </body>
 </html>
