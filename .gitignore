@@ -1,5 +1,7 @@
 node_modules/
 dist/
+.env
+.data/
 .vscode/
 .DS_Store
 Curriculo_Thyago_Oliveira_Ferreira_v3_FINAL.docx

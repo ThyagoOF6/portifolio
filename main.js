@@ -3,6 +3,7 @@ const toast = document.querySelector(".toast");
 const experienceCounter = document.querySelector(".experience-counter");
 const languageButtons = document.querySelectorAll("[data-language]");
 const projectList = document.querySelector("[data-github-user]");
+const certificationsList = document.querySelector("[data-certifications-list]");
 let activeLanguage = "en";
 let loadedRepositories = [];
 
@@ -39,6 +40,9 @@ const translations = {
     projectsError: "Não foi possível carregar os projetos agora.",
     projectsEmpty: "Nenhum projeto público encontrado.",
     projectsViewAll: "ver todos no GitHub",
+    certificationsLoading: "Carregando certificações...",
+    certificationsError: "Não foi possível carregar as certificações agora.",
+    certificationsEmpty: "Nenhuma certificação encontrada.",
     projectsFork: "fork",
     projectsStars: "estrelas",
     projectOneTitle: "API REST — Sistema Financeiro",
@@ -156,6 +160,9 @@ const translations = {
     projectsError: "Projects could not be loaded right now.",
     projectsEmpty: "No public projects found.",
     projectsViewAll: "view all on GitHub",
+    certificationsLoading: "Loading certifications...",
+    certificationsError: "Certifications could not be loaded right now.",
+    certificationsEmpty: "No certifications found.",
     projectsFork: "fork",
     projectsStars: "stars",
     projectOneTitle: "REST API — Finance System",
@@ -265,6 +272,14 @@ const setLanguage = (language) => {
     if (translation) element.setAttribute("aria-label", translation);
   });
 
+  const certificationsStatus = document.querySelector(
+    "[data-certifications-status]",
+  );
+  if (certificationsStatus && certificationsStatus.dataset.state) {
+    certificationsStatus.textContent =
+      selectedTranslations[certificationsStatus.dataset.state];
+  }
+
   languageButtons.forEach((button) => {
     button.classList.toggle("active", button.dataset.language === language);
     button.setAttribute("aria-pressed", button.dataset.language === language);
@@ -339,6 +354,71 @@ const renderProjects = (repositories) => {
   projectList.append(profileLink);
 };
 
+const renderCertificationsMessage = (messageKey) => {
+  if (!certificationsList) return;
+  certificationsList.replaceChildren();
+  const message = document.createElement("p");
+  message.className = "projects-status";
+  message.dataset.certificationsStatus = "";
+  message.dataset.state = messageKey;
+  message.textContent = translations[activeLanguage][messageKey];
+  certificationsList.append(message);
+};
+
+const renderCertifications = (certifications) => {
+  if (!certificationsList) return;
+  certificationsList.replaceChildren();
+
+  certifications.forEach((certification) => {
+    const item = document.createElement("article");
+    item.className = "credential-item reveal";
+
+    const date = document.createElement("span");
+    date.textContent = certification.date || "";
+
+    const details = document.createElement("div");
+    const title = document.createElement("h3");
+    title.textContent = certification.title || "Certification";
+    const issuer = document.createElement("p");
+    issuer.textContent = certification.issuer || "";
+    details.append(title, issuer);
+
+    if (certification.url) {
+      const link = document.createElement("a");
+      link.href = certification.url;
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      link.textContent = "verify ↗";
+      details.append(link);
+    }
+
+    item.append(date, details);
+    certificationsList.append(item);
+    observeRevealItem(item);
+  });
+};
+
+const loadCertifications = async () => {
+  if (!certificationsList) return;
+
+  try {
+    let response = await fetch("/api/certifications");
+    if (!response.ok) response = await fetch("./certifications.json");
+    if (!response.ok)
+      throw new Error(`Certifications responded with ${response.status}`);
+
+    const certifications = await response.json();
+    if (!Array.isArray(certifications) || certifications.length === 0) {
+      renderCertificationsMessage("certificationsEmpty");
+      return;
+    }
+    renderCertifications(certifications);
+  } catch (error) {
+    console.error("Could not load certifications", error);
+    renderCertificationsMessage("certificationsError");
+  }
+};
+
 const loadProjects = async () => {
   if (!projectList) return;
 
@@ -366,6 +446,7 @@ const loadProjects = async () => {
 };
 
 loadProjects();
+loadCertifications();
 
 const updateExperienceCounter = () => {
   if (!experienceCounter) return;
