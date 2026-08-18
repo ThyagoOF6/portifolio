@@ -2,7 +2,9 @@ const emailButton = document.querySelector(".email-button");
 const toast = document.querySelector(".toast");
 const experienceCounter = document.querySelector(".experience-counter");
 const languageButtons = document.querySelectorAll("[data-language]");
+const projectList = document.querySelector("[data-github-user]");
 let activeLanguage = "en";
+let loadedRepositories = [];
 
 const translations = {
   pt: {
@@ -33,6 +35,12 @@ const translations = {
     tickerLearning: "APRENDIZADO CONTÍNUO",
     projectsEyebrow: "02 — selecionados",
     projectsTitle: "Projetos que<br /><em>contam algo.</em>",
+    projectsLoading: "Carregando projetos...",
+    projectsError: "Não foi possível carregar os projetos agora.",
+    projectsEmpty: "Nenhum projeto público encontrado.",
+    projectsViewAll: "ver todos no GitHub",
+    projectsFork: "fork",
+    projectsStars: "estrelas",
     projectOneTitle: "API REST — Sistema Financeiro",
     projectOneType: "Java · Spring Boot · JPA · PostgreSQL",
     projectOneDescription:
@@ -144,6 +152,12 @@ const translations = {
     tickerLearning: "CONTINUOUS LEARNING",
     projectsEyebrow: "02 — selected work",
     projectsTitle: "Projects that<br /><em>tell a story.</em>",
+    projectsLoading: "Loading projects...",
+    projectsError: "Projects could not be loaded right now.",
+    projectsEmpty: "No public projects found.",
+    projectsViewAll: "view all on GitHub",
+    projectsFork: "fork",
+    projectsStars: "stars",
     projectOneTitle: "REST API — Finance System",
     projectOneType: "Java · Spring Boot · JPA · PostgreSQL",
     projectOneDescription:
@@ -266,6 +280,93 @@ languageButtons.forEach((button) => {
 const savedLanguage = window.localStorage.getItem("portfolio-language");
 setLanguage(savedLanguage === "pt" ? "pt" : "en");
 
+const renderProjectsMessage = (messageKey) => {
+  if (!projectList) return;
+  projectList.replaceChildren();
+  const message = document.createElement("p");
+  message.className = "projects-status";
+  message.textContent = translations[activeLanguage][messageKey];
+  projectList.append(message);
+};
+
+const renderProjects = (repositories) => {
+  projectList.replaceChildren();
+
+  repositories.forEach((repository, index) => {
+    const project = document.createElement("a");
+    project.className = `project${index === 0 ? " project-featured" : ""} reveal`;
+    project.href = repository.html_url;
+    project.target = "_blank";
+    project.rel = "noreferrer";
+
+    const image = document.createElement("div");
+    image.className = "project-image";
+    image.style.backgroundImage = `url("https://opengraph.githubassets.com/1/${repository.full_name}")`;
+    const number = document.createElement("span");
+    number.textContent = String(index + 1).padStart(2, "0");
+    image.append(number);
+
+    const info = document.createElement("div");
+    info.className = "project-info";
+    const details = document.createElement("div");
+    const title = document.createElement("h3");
+    title.textContent = repository.name;
+    const type = document.createElement("p");
+    type.textContent =
+      [repository.language, repository.topics?.join(" · ")]
+        .filter(Boolean)
+        .join(" · ") || "GitHub repository";
+    const description = document.createElement("p");
+    description.className = "project-description";
+    description.textContent = repository.description || "";
+    details.append(title, type, description);
+
+    const arrow = document.createElement("span");
+    arrow.className = "arrow";
+    arrow.textContent = "↗";
+    info.append(details, arrow);
+    project.append(image, info);
+    projectList.append(project);
+    observeRevealItem(project);
+  });
+
+  const profileLink = document.createElement("a");
+  profileLink.className = "projects-profile-link";
+  profileLink.href = `https://github.com/${projectList.dataset.githubUser}?tab=repositories`;
+  profileLink.target = "_blank";
+  profileLink.rel = "noreferrer";
+  profileLink.textContent = translations[activeLanguage].projectsViewAll + " ↗";
+  projectList.append(profileLink);
+};
+
+const loadProjects = async () => {
+  if (!projectList) return;
+
+  try {
+    const response = await fetch(
+      `https://api.github.com/users/${projectList.dataset.githubUser}/repos?sort=updated&direction=desc&per_page=100`,
+      { headers: { Accept: "application/vnd.github+json" } },
+    );
+    if (!response.ok)
+      throw new Error(`GitHub responded with ${response.status}`);
+
+    const repositories = (await response.json()).filter(
+      (repository) => !repository.fork,
+    );
+    loadedRepositories = repositories;
+    if (repositories.length === 0) {
+      renderProjectsMessage("projectsEmpty");
+      return;
+    }
+    renderProjects(repositories);
+  } catch (error) {
+    console.error("Could not load GitHub projects", error);
+    renderProjectsMessage("projectsError");
+  }
+};
+
+loadProjects();
+
 const updateExperienceCounter = () => {
   if (!experienceCounter) return;
 
@@ -310,7 +411,11 @@ const observer = new IntersectionObserver(
   { threshold: 0.12 },
 );
 
-revealItems.forEach((item) => {
+const observeRevealItem = (item) => {
   item.style.animationPlayState = "paused";
   observer.observe(item);
+};
+
+revealItems.forEach((item) => {
+  observeRevealItem(item);
 });

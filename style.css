@@ -268,6 +268,24 @@ h2 em {
   grid-template-columns: 1fr 1fr;
   gap: 48px 20px;
 }
+.projects-status,
+.projects-profile-link {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--muted);
+  font: 12px var(--mono);
+}
+.projects-profile-link {
+  width: fit-content;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--ink);
+  color: var(--ink);
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+.projects-profile-link:hover {
+  color: var(--coral);
+}
 .project-featured {
   grid-column: span 2;
 }
@@ -305,6 +323,12 @@ h2 em {
   background: #cf8d77
     url("https://images.unsplash.com/photo-1553484771-047a44eee27b?auto=format&fit=crop&w=800&q=80")
     center/cover;
+  background-blend-mode: multiply;
+}
+.project-image:not(.project-image-one):not(.project-image-two):not(
+    .project-image-three
+  ) {
+  background: var(--sage) center/cover;
   background-blend-mode: multiply;
 }
 .project-info {
